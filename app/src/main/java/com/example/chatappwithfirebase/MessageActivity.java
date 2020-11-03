@@ -94,7 +94,7 @@ recyclerView.setLayoutManager(linearLayoutManager);
             }
             else
             {
-                Toast.makeText(MessageActivity.this, "Hey MotherFucker First Write Something,Idiot", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MessageActivity.this, "Please Write Something To Send", Toast.LENGTH_SHORT).show();
             }
         txt_send.setText("");
 

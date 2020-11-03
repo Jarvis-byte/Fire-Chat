@@ -14,18 +14,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="true" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="API Key" />
-        <meta-data android:name="firebase_crash_collection_enabled"
-            android:value="false"/>
+        <meta-data
+            android:name="firebase_crash_collection_enabled"
+            android:value="false" />
 
-        <activity android:name=".ResetPasswordActivity"
-android:parentActivityName=".LoginActivity"
-            ></activity>
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:parentActivityName=".LoginActivity" />
         <activity android:name=".MessageActivity" />
         <activity android:name=".StartActivity">
             <intent-filter>
@@ -42,23 +44,22 @@ android:parentActivityName=".LoginActivity"
             android:name=".LoginActivity"
             android:parentActivityName=".StartActivity" />
 
-<service android:name=".Notification.FirebaseIdService"
-    android:enabled="true"
-    android:exported="true">
-    <intent-filter>
-        <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-    </intent-filter>
-</service>
-
-        <service android:name=".Notification.MyFirebaseMessaging"
+        <service
+            android:name=".Notification.FirebaseIdService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
-
+        <service
+            android:name=".Notification.MyFirebaseMessaging"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -61,7 +61,7 @@ android:background="#474747"
           android:layout_toLeftOf="@+id/btn_send"
           android:layout_centerVertical="true"
           android:background="@android:color/transparent"
-          android:hint="Type a message,asshole..." />
+          android:hint="Type message here ..." />
 
       <ImageButton
           android:id="@+id/btn_send"
