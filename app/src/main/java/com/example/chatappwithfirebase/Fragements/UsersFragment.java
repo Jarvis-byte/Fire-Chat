@@ -69,6 +69,7 @@ public class UsersFragment extends Fragment {
     }
 
     private void searchUsers(String s) {
+
         final FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
         Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("search")
                 .startAt(s)

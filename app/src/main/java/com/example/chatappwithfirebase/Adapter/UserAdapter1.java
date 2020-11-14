@@ -60,6 +60,7 @@ public class UserAdapter1 extends RecyclerView.Adapter<UserAdapter1.ViewHolder> 
 
             Glide.with(mContext).load(user.getImageUrl()).into(holder.profile_image);
         }
+
         if (ischat) {
             lastMessage(user.getId(), holder.last_msg);
         } else {
@@ -124,7 +125,7 @@ public class UserAdapter1 extends RecyclerView.Adapter<UserAdapter1.ViewHolder> 
         theLastMessage = "default";
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
-        if (userid.isEmpty()) {
+        if (!userid.isEmpty()) {
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
 
@@ -138,7 +139,7 @@ public class UserAdapter1 extends RecyclerView.Adapter<UserAdapter1.ViewHolder> 
                     }
                     switch (theLastMessage) {
                         case "default":
-                            last_msg.setText("No Message");
+                            last_msg.setText("");
                             break;
                         default:
                             last_msg.setText(theLastMessage);
