@@ -31,61 +31,52 @@ import java.util.List;
 public class UserAdapter1 extends RecyclerView.Adapter<UserAdapter1.ViewHolder> {
     private Context mContext;
     private List<User> mUsers;
-private boolean ischat;
-String theLastMessage;
+    private boolean ischat;
+    String theLastMessage;
 
-    public UserAdapter1(Context mContext, List<User> mUsers,boolean ischat)
-    {
-        this.mUsers=mUsers;
-        this.mContext=mContext;
-        this.ischat=ischat;
+    public UserAdapter1(Context mContext, List<User> mUsers, boolean ischat) {
+        this.mUsers = mUsers;
+        this.mContext = mContext;
+        this.ischat = ischat;
 
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(mContext).inflate(R.layout.user_item,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent, false);
 
-               return new UserAdapter1.ViewHolder(view);
+        return new UserAdapter1.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final User user=mUsers.get(position);
+        final User user = mUsers.get(position);
         holder.username.setText(user.getUsername());
-        if (user.getImageUrl().equals("default"))
-        {
+        if (user.getImageUrl().equals("default")) {
 
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
-        }
-        else
-        {
+        } else {
 
             Glide.with(mContext).load(user.getImageUrl()).into(holder.profile_image);
         }
-if (ischat)
-{
-    lastMessage(user.getId(),holder.last_msg);
-}
-else {
-    holder.last_msg.setVisibility(View.GONE);
-}
+        if (ischat) {
+            lastMessage(user.getId(), holder.last_msg);
+        } else {
+            holder.last_msg.setVisibility(View.GONE);
+        }
 
 
-        if (ischat)
-        {
-            if(user.getStatus().equals("Online"))
-            {
-                Log.i("Status","Online");
+        if (ischat) {
+            if (user.getStatus().equals("Online")) {
+                Log.i("Status", "Online");
                 holder.img_on.setVisibility(View.VISIBLE);
                 holder.img_off.setVisibility(View.GONE);
-            }else {
+            } else {
                 holder.img_on.setVisibility(View.GONE);
                 holder.img_off.setVisibility(View.VISIBLE);
             }
-        }else
-        {
+        } else {
             holder.img_on.setVisibility(View.GONE);
             holder.img_off.setVisibility(View.GONE);
         }
@@ -93,8 +84,8 @@ else {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(mContext, MessageActivity.class);
-                intent.putExtra("userid",user.getId());
+                Intent intent = new Intent(mContext, MessageActivity.class);
+                intent.putExtra("userid", user.getId());
                 mContext.startActivity(intent);
             }
         });
@@ -108,32 +99,33 @@ else {
         return mUsers.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView username;
         public ImageView profile_image;
         private ImageView img_on;
         private ImageView img_off;
-private  TextView last_msg;
+        private TextView last_msg;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-                username=itemView.findViewById(R.id.username);
-                profile_image=itemView.findViewById(R.id.profile_image);
-          img_on=itemView.findViewById(R.id.img_on);
-            img_off=itemView.findViewById(R.id.img_off);
-            last_msg=itemView.findViewById(R.id.last_msg);
+            username = itemView.findViewById(R.id.username);
+            profile_image = itemView.findViewById(R.id.profile_image);
+            img_on = itemView.findViewById(R.id.img_on);
+            img_off = itemView.findViewById(R.id.img_off);
+            last_msg = itemView.findViewById(R.id.last_msg);
 
         }
     }
+
     //checking for last msg;
     private void lastMessage(final String userid, final TextView last_msg) {
 
         theLastMessage = "default";
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
-        if (userid.isEmpty())
-        {  reference.addValueEventListener(new ValueEventListener() {
+        if (userid.isEmpty()) {
+            reference.addValueEventListener(new ValueEventListener() {
                 @Override
 
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -162,7 +154,7 @@ private  TextView last_msg;
                 }
             });
 
-    }
+        }
     }
 
 }
