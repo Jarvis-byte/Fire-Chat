@@ -1,6 +1,6 @@
 # Fire-Chat - Android chat app base on Firebase.  
-Fire - Chat is an example for chat app base on Google Firebase, messages are delivered in real-time.Interesting feature of
-this Chat App is it let Users' DELETE Chats without letting users know about it(No Message will be shown "This message has been deleted")
+Fire - Chat is an example of a chat app base on Google Firebase, messages are delivered in real-time.Interesting feature of
+this Chat App is it lets Users' DELETE Chats without letting users know about it(No Message will be shown "This message has been deleted")
 
 ### Part 1 Demo
 
